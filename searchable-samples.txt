@@ -1,0 +1,71 @@
+index-mapping|The catalog search index maps repository names, paths, branch identifiers, and commit metadata into searchable fields.
+index-refresh|A refresh makes recently committed documents visible to queries while background indexing continues across the shard.
+index-alias|The staging alias points to a versioned index so a test can compare query results before and after a rollover.
+index-template|An index template defines analyzers, field mappings, replica counts, and lifecycle settings for newly created indices.
+index-tokenizer|The standard tokenizer splits descriptive text into terms that can be matched by a full text query.
+index-ranking|Relevance ranking favors documents that match several query terms in their title, path, and content.
+index-bulk|A bulk indexing request groups documents into batches to improve ingestion throughput during a corpus load.
+index-recovery|Index recovery reports shard initialization, translog replay, and the time required before search is available.
+shard-primary|The primary shard accepts indexed documents and forwards replication work to its assigned replica shards.
+shard-replica|A replica shard serves eligible reads and can be promoted when its primary becomes unavailable.
+shard-allocation|Shard allocation balances index copies across available nodes while respecting cluster placement rules.
+shard-relocation|Shard relocation transfers index data between nodes and temporarily increases network and disk activity.
+shard-routing|A routing key sends related documents to the same shard to support predictable query patterns.
+shard-count|The index shard count determines how many independent partitions participate in search and recovery.
+shard-health|Cluster health changes to yellow when a primary is active but at least one configured replica is unassigned.
+shard-rebalance|A rebalance moves shard copies to reduce uneven storage and query pressure across the cluster.
+replication-sync|Synchronous replication waits for configured copies to acknowledge writes before reporting success.
+replication-async|Asynchronous replication confirms a write before every replica has applied the new operation.
+replication-lag|Replication lag measures the delay between primary indexing and replica visibility for a document.
+replication-checkpoint|A replication checkpoint records the highest sequence number applied by each shard copy.
+replication-recovery|Replica recovery copies missing segment files and replays operations that arrived during transfer.
+replication-failover|Failover promotes an eligible replica and redirects subsequent writes to the new primary.
+replication-consistency|A consistency test compares document counts and sampled content across primary and replica copies.
+replication-bandwidth|Replication throughput changes with document size, compression ratio, network capacity, and concurrent writes.
+replication-strategy|A replication strategy balances write latency, recovery time, storage cost, and read availability.
+git-commit|A repository commit adds a snapshot of text files that the hosting service can process through its indexing pipeline.
+git-branch|A feature branch contains independent commits that can be fetched and searched without changing the default branch.
+git-push|A Git push transfers commit objects and references to the appliance using the normal repository write path.
+git-history|Commit history records authorship, timestamps, parent relationships, and changes to searchable source files.
+git-packfile|Packfile generation compresses related Git objects before they are transferred to a replica.
+git-fetch|A fetch requests reachable objects and references that are missing from a local repository clone.
+git-blob|A text blob stores file content addressed by its object identifier and referenced by a commit tree.
+git-merge|A merge commit joins independent histories and keeps both parent relationships visible in repository history.
+query-phrase|A phrase query searches for adjacent terms in indexed content and can be compared with a broad match query.
+query-filter|A filter restricts results by repository, branch, path, language, or a synthetic document identifier.
+query-prefix|A prefix query finds identifiers that begin with a selected corpus namespace or benchmark label.
+query-terms|A terms query matches one or more keywords selected from the replication and indexing sample corpus.
+query-latency|Query latency is measured from request submission until matching repository documents are returned.
+query-concurrency|Concurrent search requests exercise coordinating nodes while index refreshes and replicas remain active.
+query-pagination|Pagination tests retrieve successive result windows and compare stable ordering across repeated searches.
+query-count|An exact document count provides a baseline for measuring ingestion completeness after a seed run.
+cluster-node|Each cluster node contributes processor, memory, disk, and network capacity to indexing and search workloads.
+cluster-disk|Disk watermarks influence shard placement and can prevent allocation when a node approaches its capacity limit.
+cluster-cache|A query cache can accelerate repeated filters but may need warming after index relocation or node restart.
+cluster-metrics|Metrics capture indexing rate, search latency, queue depth, storage use, and shard-level recovery progress.
+cluster-upgrade|An upgrade test checks that indexed documents remain searchable while nodes move between software versions.
+cluster-settings|Cluster settings control allocation behavior and should be recorded alongside each replication experiment.
+storage-segments|Immutable segment files are merged over time to reduce the number of structures consulted by searches.
+storage-translog|The transaction log preserves recent operations so a shard can recover writes after an unexpected restart.
+storage-merge|Segment merging uses disk and CPU resources while maintaining query access to existing index content.
+storage-compression|Text compression reduces stored bytes but does not remove the cost of tokenizing and indexing searchable terms.
+storage-snapshot|A snapshot captures index data for restore testing and provides a checkpoint outside active shard replication.
+storage-retention|Retention rules remove expired test documents so repeated benchmark runs can control index growth.
+workload-ingest|An ingestion workload varies document count, text size, commit rate, and concurrent repository updates.
+workload-burst|A burst workload publishes many text-heavy commits in a short interval to measure indexing queue behavior.
+workload-steady|A steady workload adds a predictable stream of documents while search queries run at the same time.
+workload-recovery|A recovery workload compares replica rebuild duration after a node returns with a large index already present.
+workload-search|A search workload mixes exact identifiers, common terms, phrase matches, and filters over synthetic files.
+workload-baseline|A baseline run records shard state, indexing throughput, query latency, and document visibility delay.
+workload-repeat|A repeatable workload uses stable document identifiers so separate replication configurations can be compared.
+workload-report|A benchmark report summarizes source document count, indexed count, replica state, and observed search timings.
+traffic-read|Read traffic distributed across replicas can improve availability when shard copies are healthy and queryable.
+traffic-write|Write traffic sent to a primary creates replication work that can be observed on its assigned shard copies.
+traffic-mixed|A mixed workload combines repository pushes, document indexing, and searches to expose resource contention.
+traffic-observer|An observer records document visibility and shard health without modifying cluster configuration.
+test-checkpoint|The test checkpoint includes a timestamp, document identifier range, index name, and replication configuration.
+test-isolation|An isolated test index prevents synthetic benchmark documents from mixing with production application data.
+test-cleanup|A cleanup run deletes only the dedicated test index after its measurements have been exported.
+test-scenario|The scenario compares replica recovery behavior after indexing the same synthetic corpus under different settings.
+test-result|The result record stores the selected strategy, corpus size, elapsed time, and any missing searchable documents.
+test-document|This synthetic record contains repeatable technical prose for testing content ingestion and full text matching.
